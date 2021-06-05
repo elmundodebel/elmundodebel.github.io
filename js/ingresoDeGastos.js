@@ -4,6 +4,7 @@ const textoMasDeUnGasto = 'Tienes algun gasto más que declarar?\nEn caso negati
 const textoGastoAQuitar = 'Ingresa el numero de gasto a quitar'
 const despedida = 'Excelente!\nRecuerda que puedes volver a ingresar cuantas veces lo necesites'
 const noHayMasGastos = 'Se ha finalizado la carga de gastos'
+const noExisteElGasto = 'No existe el gasto a quitar'
 
 var montoAcumulado = 0
 var gastosIngresados = ''
@@ -14,7 +15,7 @@ var gastos = [["gasto","detalle","rubro","fecha","monto","medio de pago"]]
 
 function FuncionIngresoGastos(){
   var condicion = prompt(textoPrimerGasto);
-  crearTabla(gastos);
+  
 while (condicion != 0){
       var gasto = gastos.length;
       detalle = prompt('ingresa el detalle del gasto '+gasto) ;
@@ -33,9 +34,9 @@ while (condicion != 0){
       continue;
     }
   alert(despedida);
-  borrartabla();
+  borrarTabla();
   crearTabla(gastos);
-  document.getElementById("IngresoGastos").innerText = "Ingresar más gastos";
+    document.getElementById("IngresoGastos").innerText = "Ingresar más gastos";
 }
 
 
@@ -45,13 +46,15 @@ function FuncionQuitarGastos(){
   var idGastoAQuitar = prompt(textoGastoAQuitar);
   var aborrar = (element) => element[0] == idGastoAQuitar;
   var elementoABorrar = gastos.findIndex(aborrar)
-  var DetalleGastoAQuitar = 'Gastos a Quitar ' + gastos[elementoABorrar];
+  if (elementoABorrar >=0 ){
+    var DetalleGastoAQuitar = 'Gastos a Quitar ' + gastos[elementoABorrar];
   alert(DetalleGastoAQuitar);
-  gastos.splice(elementoABorrar,1);
+  gastos.splice(elementoABorrar,1);}
+  else {alert (noExisteElGasto)};
   //crearParrafo('Gasto Quitado: '+ DetalleGastoAQuitar);
   sessionStorage.setItem('ListadoGastosLocal', JSON.stringify(gastos));
   //gastos.forEach(element => console.log('Gasto ' + element[0] + ': ' + element[1]+ ' - $' + element[2]+ ' - ' + element[3]));
-  borrartabla();
+  borrarTabla();
   crearTabla(gastos);
   }
   else alert('No hay gastos ingresados')
@@ -82,8 +85,9 @@ function crearTabla(datosTabla) {
 
 
 // borra tabla con gastos
-function borrartabla(){
+function borrarTabla(){
+  if (!!document.getElementById("tablaDeGastos") == true) {
   var tablaABorrar = document.getElementById("tablaDeGastos")
   var padre = document.getElementById("moduloGastos")
-  padre.removeChild(tablaABorrar)
+  padre.removeChild(tablaABorrar)}
 }
