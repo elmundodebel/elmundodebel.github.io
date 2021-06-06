@@ -11,9 +11,8 @@ var gastosIngresados = ''
 var gastos = [["gasto","detalle","rubro","fecha","monto","medio de pago"]]
 
 
-//ingresar gastos
 
-function FuncionIngresoGastos(){
+function FuncionIngresoGastos2(){
   var condicion = prompt(textoPrimerGasto);
   
 while (condicion != 0){
@@ -81,7 +80,11 @@ function crearTabla(datosTabla) {
 
   tabla.appendChild(cuerpoTabla);
   document.getElementById("moduloGastos").appendChild(tabla);
+  $("#tablaDeGastos").hide()
+  $("#tablaDeGastos").show('slow')
 }
+
+
 
 
 // borra tabla con gastos
