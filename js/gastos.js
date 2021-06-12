@@ -64,7 +64,11 @@ var FormGasto = `
                 </div>
                   
               </div> `
-
+//funcion para borrar todos los gastos del formulario
+function BorrarTodosLosGastos(){
+  localStorage.removeItem('Gastos');
+  alert("Has borrado todos los gastos")
+}
 
 //funcion para guardar gastos de formulario
 function Cargar() {
@@ -77,7 +81,8 @@ function Cargar() {
   var monto = $('#formGastos').find('input[id="montoGasto"]').val();
   var mdp = $('#formGastos').find('input[id="mdpGasto"]').val();
   gastos.push([id_gasto, detalle, rubro, fecha, monto, mdp])
-  localStorage.setItem('Gastos', JSON.stringify(gastos));   
+  localStorage.setItem('Gastos', JSON.stringify(gastos));
+  $("#formGastos")[0].reset();
 }
 
 // funcion para quitar gastos
@@ -97,8 +102,8 @@ function FuncionQuitarGastos(){
   gastos.splice(elementoABorrar,1);}
   else {alert (noExisteElGasto)};
   localStorage.setItem('Gastos', JSON.stringify(gastos));
-  }
   ResumenGastos();
+  }
 }
 
 // crea tabla de resumen de gastos
