@@ -67,6 +67,7 @@ var FormGasto = `
 //funcion para borrar todos los gastos del formulario
 function BorrarTodosLosGastos(){
   localStorage.removeItem('Gastos');
+  $('#tablaDeGastos').remove();
   alert("Has borrado todos los gastos")
 }
 
