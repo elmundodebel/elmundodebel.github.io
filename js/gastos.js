@@ -66,9 +66,14 @@ var FormGasto = `
               </div> `
 //funcion para borrar todos los gastos del formulario
 function BorrarTodosLosGastos(){
-  localStorage.removeItem('Gastos');
-  $('#tablaDeGastos').remove();
-  alert("Has borrado todos los gastos")
+  creoLocalStorageGastos();
+  gastos = variableGuardada('Gastos');
+  if (gastos.length >1){
+    $('#tablaDeGastos').remove();
+    localStorage.removeItem('Gastos');
+    alert("Has borrado todos los gastos")  
+  }
+  else { alert("No hay gastos por borrar")  }
 }
 
 //funcion para guardar gastos de formulario
@@ -94,14 +99,14 @@ function FuncionQuitarGastos(){
   ResumenGastos();
   gastos = variableGuardada('Gastos');
   if (gastos.length > 1){
-  var idGastoAQuitar = prompt(textoGastoAQuitar);
-  var aborrar = (element) => element[0] == idGastoAQuitar;
-  var elementoABorrar = gastos.findIndex(aborrar)
-  if (elementoABorrar >=0 ){
-    var DetalleGastoAQuitar = 'Gastos a Quitar ' + gastos[elementoABorrar];
-  alert(DetalleGastoAQuitar);
-  gastos.splice(elementoABorrar,1);}
-  else {alert (noExisteElGasto)};
+        var idGastoAQuitar = prompt(textoGastoAQuitar);
+        var aborrar = (element) => element[0] == idGastoAQuitar;
+        var elementoABorrar = gastos.findIndex(aborrar);
+        if (elementoABorrar >=0 ){
+          var DetalleGastoAQuitar = 'Gastos a Quitar ' + gastos[elementoABorrar];
+          alert(DetalleGastoAQuitar);
+          gastos.splice(elementoABorrar,1);}
+        else {alert (noExisteElGasto)};
   localStorage.setItem('Gastos', JSON.stringify(gastos));
   ResumenGastos();
   }
@@ -109,6 +114,7 @@ function FuncionQuitarGastos(){
 
 // crea tabla de resumen de gastos
 function ResumenGastos() {
+  $('#tablaDeGastos').remove()
   creoLocalStorageGastos();
   var datosTabla = variableGuardada('Gastos');
   if (datosTabla.length >1){
