@@ -1,0 +1,23 @@
+[
+    {
+        "dia": "11/06/2021",
+        "cotiOficialVenta": "$94.15",
+        "cotiOficialCompra": "$100.35",
+        "cotiBlueVenta": "$158.00",
+        "cotiBlueCompra": "$153.80"
+      },
+      {
+        "dia": "10/06/2021",
+        "cotiOficialVenta": "$94.14",
+        "cotiOficialCompra": "$100.32",
+        "cotiBlueVenta": "$157.00",
+        "cotiBlueCompra": "$152.80"
+      },
+      {
+        "dia": "09/06/2021",
+        "cotiOficialVenta": "$94.14",
+        "cotiOficialCompra": "$100.32",
+        "cotiBlueVenta": "$156.00",
+        "cotiBlueCompra": "$151.80"
+      }
+    ]
