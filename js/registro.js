@@ -6,11 +6,9 @@ var getData = function(){
         email : document.getElementById("inputEmail").value,
         telefono : document.getElementById("inputTel").value,
         clave : document.getElementById("inputPassword").value,
-
     }
     sessionStorage.setItem('Registro', JSON.stringify(datosUsuario));
     console.log(datosUsuario);
-    
 }
 
 var usuario = JSON.parse(sessionStorage.getItem('Registro'));
